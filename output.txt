@@ -1,6 +1,10 @@
-Total recycled: 26
-plastic percentage: 19.23%
-glass percentage: 30.77%
-paper percentage: 38.46%
-metal percentage: 11.54%
-Invalid input: garbage, 1
+Total Recycled: 26 items
+
+Percentage Recycled:
+plastic: 19.23%
+glass: 30.77%
+paper: 38.46%
+metal: 11.54%
+
+Invalid Inputs:
+garbage, 1

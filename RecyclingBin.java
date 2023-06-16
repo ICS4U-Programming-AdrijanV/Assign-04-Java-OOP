@@ -1,82 +1,66 @@
-// Importing required classes
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class RecyclingBin {
-    // Class variables to track the quantities of different materials
-    private int totalPaper;
-    private int totalPlastic;
-    private int totalGlass;
-    private int totalMetal;
+    private int paper;
+    private int plastic;
+    private int glass;
+    private int metal;
+    private List<String> invalidInputs;
 
-    // Constructor
     public RecyclingBin() {
-        // Initialize the quantities to zero
-        totalPaper = 0;
-        totalPlastic = 0;
-        totalGlass = 0;
-        totalMetal = 0;
+        paper = 0;
+        plastic = 0;
+        glass = 0;
+        metal = 0;
+        invalidInputs = new ArrayList<>();
     }
 
-    // Method to add a quantity of paper to the recycling bin
     public void addPaper(int quantity) {
-        // Increment the total paper count by the given quantity
-        totalPaper += quantity;
+        paper += quantity;
     }
 
-    // Method to add a quantity of plastic to the recycling bin
     public void addPlastic(int quantity) {
-        // Increment the total plastic count by the given quantity
-        totalPlastic += quantity;
+        plastic += quantity;
     }
 
-    // Method to add a quantity of glass to the recycling bin
     public void addGlass(int quantity) {
-        // Increment the total glass count by the given quantity
-        totalGlass += quantity;
+        glass += quantity;
     }
 
-    // Method to add a quantity of metal to the recycling bin
     public void addMetal(int quantity) {
-        // Increment the total metal count by the given quantity
-        totalMetal += quantity;
+        metal += quantity;
     }
 
-    // Method to calculate the total quantity of all materials recycled
     public int calculateTotalRecycled() {
-        // Calculate the sum of quantities for all materials
-        int totalRecycled = totalPaper + totalPlastic + totalGlass + totalMetal;
-        // Return the total quantity of recycled materials
-        return totalRecycled;
+        return paper + plastic + glass + metal;
     }
 
-    // Method to calculate the percentage of each material recycled
     public Map<String, Double> calculatePercentageRecycled() {
-        // Calculate the total quantity of all materials recycled
-        int totalRecycled = calculateTotalRecycled();
-        // Create a HashMap to store the material and its percentage
         Map<String, Double> percentageMap = new HashMap<>();
+        int totalRecycled = calculateTotalRecycled();
 
-        // Check if any materials have been recycled
-        if (totalRecycled > 0) {
-            // Calculate and add the percentage of paper recycled
-            double paperPercentage = (totalPaper * 100.0) / totalRecycled;
-            percentageMap.put("paper", paperPercentage);
-
-            // Calculate and add the percentage of plastic recycled
-            double plasticPercentage = (totalPlastic * 100.0) / totalRecycled;
-            percentageMap.put("plastic", plasticPercentage);
-
-            // Calculate and add the percentage of glass recycled
-            double glassPercentage = (totalGlass * 100.0) / totalRecycled;
-            percentageMap.put("glass", glassPercentage);
-
-            // Calculate and add the percentage of metal recycled
-            double metalPercentage = (totalMetal * 100.0) / totalRecycled;
-            percentageMap.put("metal", metalPercentage);
+        if (totalRecycled == 0) {
+            return percentageMap;
         }
 
-        // Return the map containing material and its percentage
+        double paperPercentage = (double) paper / totalRecycled * 100;
+        double plasticPercentage = (double) plastic / totalRecycled * 100;
+        double glassPercentage = (double) glass / totalRecycled * 100;
+        double metalPercentage = (double) metal / totalRecycled * 100;
+
+        percentageMap.put("paper", paperPercentage);
+        percentageMap.put("plastic", plasticPercentage);
+        percentageMap.put("glass", glassPercentage);
+        percentageMap.put("metal", metalPercentage);
+
         return percentageMap;
+    }
+
+    public List<String> getInvalidInputs() {
+        return invalidInputs;
+    }
+
+    public void addInvalidInput(String input) {
+        invalidInputs.add(input);
     }
 }
