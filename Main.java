@@ -4,6 +4,14 @@ import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.*;
 
+/**
+ * This program models a recycling bin.
+ *
+ * @author Adrijan Vranjkovic
+ * @version 1.0
+ * @since 2023-06-15
+ */
+
 public class Main {
     public static void main(String[] args) {
         // Specify the input and output file names
