@@ -6,12 +6,14 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
+        // Specify the input and output file names
         String inputFileName = "input.txt";
         String outputFileName = "output.txt";
 
+        // Create a RecyclingBin object to track recycling data
         RecyclingBin bin = new RecyclingBin();
 
-        // Update the recycling bin
+        // Update the recycling bin based on the input file
         processInputFile(inputFileName, bin);
         // Generate the output file based on the recycling bin data
         generateOutputFile(outputFileName, bin);
@@ -42,6 +44,7 @@ public class Main {
                     bin.addInvalidInput(line);
                     continue;
                 }
+
                 // Extract the material (convert to lowercase for case-insensitive comparison)
                 String material = parts[0].toLowerCase();
                 // Extract the quantity as a string
@@ -50,7 +53,7 @@ public class Main {
                 try {
                     // Convert the quantity string to an integer
                     int quantity = Integer.parseInt(quantityStr);
-
+                    // Go through each material to see which one to add to.
                     switch (material) {
                         case "paper":
                             bin.addPaper(quantity);
@@ -65,6 +68,7 @@ public class Main {
                             bin.addMetal(quantity);
                             break;
                         default:
+                            // Unknown material, add the line to the list of invalid inputs
                             bin.addInvalidInput(line);
                             break;
                     }
@@ -77,6 +81,7 @@ public class Main {
             // Close the scanner
             scanner.close();
         } catch (IOException e) {
+            // Display error.
             System.out.println("An error occurred while processing the input file: " + e.getMessage());
         }
     }
@@ -98,6 +103,7 @@ public class Main {
             // Write the percentage of each material recycled to the output file
             DecimalFormat df = new DecimalFormat("0.00");
             writer.write("Percentage Recycled:\n");
+            // For loop to go through each material.
             for (Map.Entry<String, Double> entry : percentageMap.entrySet()) {
                 String material = entry.getKey();
                 double percentage = entry.getValue();
@@ -115,6 +121,7 @@ public class Main {
             // Close the writer
             writer.close();
 
+            // Testing to see if output displays
             System.out.println("Output file generated successfully: " + outputFileName);
         } catch (IOException e) {
             System.out.println("An error occurred while generating the output file: " + e.getMessage());
